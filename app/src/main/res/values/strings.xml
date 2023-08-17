@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">RecyclerViewActivity</string>
+    <string name="title_activity_lazy_column">LazyColumnActivity</string>
+</resources>
