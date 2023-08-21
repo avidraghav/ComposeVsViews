@@ -34,6 +34,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.raghav.composevsviews.ui.theme.ComposeVsViewsTheme
+import kotlinx.collections.immutable.toImmutableList
 
 const val TAG = "LazyColumnActivity"
 
@@ -102,7 +103,7 @@ fun ShowList(
 ) {
     Log.d(TAG, "List Composed isRefreshing ${state.isRefreshing}")
     val sortedItems by remember {
-        mutableStateOf(state.items)
+        mutableStateOf(state.items.toImmutableList())
     }
     val refreshState =
         rememberPullRefreshState(refreshing = state.isRefreshing, onRefresh = onRefresh)
