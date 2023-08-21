@@ -34,6 +34,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.raghav.composevsviews.ui.theme.ComposeVsViewsTheme
+import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
 
 const val TAG = "LazyColumnActivity"
@@ -154,7 +155,7 @@ fun Header(modifier: Modifier = Modifier) {
 
 sealed class ListState {
     data class Content(
-        val items: List<Item>,
+        val items: ImmutableList<Item>,
         val isRefreshing: Boolean = false,
     ) : ListState()
 

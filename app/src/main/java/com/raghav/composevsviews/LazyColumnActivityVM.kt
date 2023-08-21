@@ -6,6 +6,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -23,7 +25,7 @@ class LazyColumnActivityVM : ViewModel() {
             val unsortedItems = (1..20).toList()
                 .map { index ->
                     loadItem(index)
-                }
+                }.toImmutableList()
             updateContentState(items = unsortedItems)
         }
     }
@@ -40,7 +42,7 @@ class LazyColumnActivityVM : ViewModel() {
         }
     }
 
-    suspend fun updateContentState(items: List<Item>) {
+    suspend fun updateContentState(items: ImmutableList<Item>) {
         withContext(Dispatchers.Main) {
             myListState = ListState.Content(
                 items = items,
