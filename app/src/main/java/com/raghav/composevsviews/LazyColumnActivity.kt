@@ -47,20 +47,19 @@ class LazyColumnActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = Color.White,
                 ) {
-                    val viewmodel: LazyColumnActivityVM = viewModel()
-                    val state = viewmodel.myListState
+                    val viewModel: LazyColumnActivityVM = viewModel()
+                    val state = viewModel.myListState
                     when (state) {
                         is ListState.Content -> {
                             Content(
                                 state = state,
                                 modifier = Modifier,
-                                onRefresh = { viewmodel.loadItems() },
-                                viewModel = viewmodel,
+                                onRefresh = { viewModel.loadItems() },
                             )
                         }
 
                         ListState.Empty -> {
-                            viewmodel.loadItems()
+                            viewModel.loadItems()
                         }
 
                         ListState.Loading -> {
@@ -81,7 +80,6 @@ class LazyColumnActivity : ComponentActivity() {
 @Composable
 fun Content(
     state: ListState.Content,
-    viewModel: LazyColumnActivityVM,
     modifier: Modifier = Modifier,
     onRefresh: () -> Unit = {},
 ) {
@@ -90,7 +88,7 @@ fun Content(
         ShowList(
             state = state,
             modifier = Modifier,
-            onRefresh = { viewModel.loadItems() },
+            onRefresh = onRefresh,
         )
     }
 }
@@ -143,7 +141,7 @@ fun ListItem(item: Item, modifier: Modifier = Modifier) {
         Text(
             text = item.id.toString(),
             fontWeight = FontWeight.Bold,
-            fontSize = 24.sp
+            fontSize = 24.sp,
         )
     }
 }

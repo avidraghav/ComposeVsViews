@@ -1,6 +1,7 @@
 package com.raghav.composevsviews
 
 import Item
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,15 +10,19 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 
+const val logTAG = "UserAdapter"
+
 class UserAdapter : ListAdapter<Item, UserAdapter.UserViewHolder>(UserDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
         val itemView = LayoutInflater.from(parent.context)
             .inflate(R.layout.item, parent, false)
+        Log.d(logTAG, "viewholder created")
         return UserViewHolder(itemView)
     }
 
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
+        Log.d(logTAG, "bind called for ${getItem(position).id}")
         holder.bind(getItem(position))
     }
 

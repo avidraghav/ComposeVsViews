@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import itemList
 
-// RecyclerView Activity
+// Activity with RecyclerView
 class MainActivity : AppCompatActivity() {
 
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
@@ -32,10 +32,10 @@ class MainActivity : AppCompatActivity() {
         }
 
         // Initial data load
-        refreshData(true)
+        refreshData()
     }
 
-    private fun refreshData(boolean: Boolean = true) {
+    private fun refreshData() {
         val userList = itemList.toMutableList()
 
         userAdapter.submitList(userList)
